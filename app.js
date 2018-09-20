@@ -6,10 +6,19 @@ const cors = require('cors');
 
 
 
+
+
+
+
+
+
 const app = express()
 app.use(cors())
 
 
+const email = require('./routes/email')
+
+app.use('/email', email)
 
 
 const port = process.env.PORT || 8080;
