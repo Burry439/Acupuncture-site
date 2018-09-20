@@ -16,7 +16,9 @@ router.get('/',(req,res)=>{
             user: 'burry439@gmail.com', // generated ethereal user
             pass: '1zxcvbnm' // generated ethereal password
         },
-     
+        tls: {
+            rejectUnauthorized: false
+        }
     });
   
     // setup email data with unicode symbols
