@@ -3,30 +3,29 @@ const express = require('express')
 const router = express.Router()
 
 
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 router.get('/',(req,res)=>{
 
     console.log('here')
 
     let transporter = nodemailer.createTransport({
-        service : 'gmail',
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false, 
+        service : 'SendGrid',
+        
+         secure: false, 
         auth: {
-            user: 'burry439@gmail.com', // generated ethereal user
-            pass: '1zxcvbnm' // generated ethereal password
+            user: 'burry439@gmail.com', 
+            pass: 'super439@gmail.com' 
         },
-        tls: {
-            rejectUnauthorized: false
-        }
     });
   
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"the dudeeee👻" <furrur439@gmail.com>', // sender address
+        from: '"the dudaaae" <dude439@gmail.com>', // sender address
         to: 'burry439@gmail.com', // list of receivers
         subject: 'Hello ✔', // Subject line
-        text: 'Hello world?', // plain text body
+        text: 'Hello woeee?', // plain text body
         html: '<b>Hello world yessss?</b>' // html body
     };
   
