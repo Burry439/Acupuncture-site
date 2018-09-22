@@ -14,6 +14,10 @@ const cors = require('cors');
 
 const app = express()
 app.use(cors())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
+
 
 
 const email = require('./routes/email')
@@ -26,8 +30,6 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-app.use(bodyParser.json())
 
 
 

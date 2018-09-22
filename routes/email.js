@@ -6,9 +6,9 @@ const router = express.Router()
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-router.get('/',(req,res)=>{
+router.put('/', (req,res)=>{
 
-    console.log('here')
+    console.log(req.body)
 
     let transporter = nodemailer.createTransport({
         service : 'SendGrid',
@@ -22,11 +22,11 @@ router.get('/',(req,res)=>{
   
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"the dudaaae" <dude439@gmail.com>', // sender address
+        from: req.body.name + '     ' + req.body.email, // sender address
         to: 'burry439@gmail.com', // list of receivers
-        subject: 'Hello ✔', // Subject line
-        text: 'Hello woeee?', // plain text body
-        html: '<b>Hello world yessss?</b>' // html body
+        subject: req.body.treatment, // Subject line
+        text: 'Name:' + req.body.name + 'Treatment Type:' + req.body.treatment + 'Phone Number: ' + req.body.phone + 'Email: ' + req.body.email, // plain text body
+        html: ' <br> Name:' + req.body.name + '<br> Treatment Type:' + req.body.treatment + '<br> Phone Number: ' + req.body.phone + '<br> Email: ' + req.body.email + '<br>' // html body
     };
   
     // send mail with defined transport object
