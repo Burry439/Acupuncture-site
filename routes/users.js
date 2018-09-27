@@ -6,32 +6,32 @@ const jwt = require("jsonwebtoken")
 const config = require("../config/database")
 
 
-router.post('/register',(req,res,next)=>{
-    let newUser = new User({
-        name: "Burry Weinstein",
-        email: "burry439@gmail.com",
-        password: '1zxcvbnm',       
-    })
-    User.findOne({email:req.body.email},(err,user)=>{
-        if(user)    
-        {     
-            return res.json({success: 'false', msg: 'Already created an account with this email'})
-        }
-        else
-        {   
-            User.addUser(newUser, (err,user)=>{
-                if(err)
-                {
-                    res.json({success: 'false', msg: 'failed to registar user'})
-                }
-                else
-                {
-                    res.json({success:'true', msg: "user registared"})
-                }
-            })
-        }
-    })
-})
+// router.post('/register',(req,res,next)=>{
+//     let newUser = new User({
+//         name: "Burry Weinstein",
+//         email: "burry439@gmail.com",
+//         password: '1zxcvbnm',       
+//     })
+//     User.findOne({email:req.body.email},(err,user)=>{
+//         if(user)    
+//         {     
+//             return res.json({success: 'false', msg: 'Already created an account with this email'})
+//         }
+//         else
+//         {   
+//             User.addUser(newUser, (err,user)=>{
+//                 if(err)
+//                 {
+//                     res.json({success: 'false', msg: 'failed to registar user'})
+//                 }
+//                 else
+//                 {
+//                     res.json({success:'true', msg: "user registared"})
+//                 }
+//             })
+//         }
+//     })
+// })
 
 
 
