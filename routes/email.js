@@ -24,9 +24,9 @@ router.put('/', (req,res)=>{
     let mailOptions = {
         from: req.body.name + '     ' + req.body.email, // sender address
         to: 'burry439@gmail.com', // list of receivers
-        subject: req.body.treatment, // Subject line
-        text: 'Name:' + req.body.name + 'Treatment Type:' + req.body.treatment + 'Phone Number: ' + req.body.phone + 'Email: ' + req.body.email, // plain text body
-        html: ' <br> Name:' + req.body.name + '<br> Treatment Type:' + req.body.treatment + '<br> Phone Number: ' + req.body.phone + '<br> Email: ' + req.body.email + '<br>' // html body
+        subject: 'new message', // Subject line
+        text: 'Name:' + req.body.name + 'Message:' + req.body.msg + 'Phone Number: ' + req.body.phone + 'Email: ' + req.body.email, // plain text body
+        html: ' <br> Name:' + req.body.name + '<br> Phone Number: ' + req.body.phone + '<br> Email: ' + req.body.email + '<br>' + '<br> Message:' + req.body.msg + '<br>'// html body
     };
   
     // send mail with defined transport object
@@ -42,4 +42,13 @@ router.put('/', (req,res)=>{
    
 })
 
-module.exports = router
+
+
+
+
+
+
+
+
+
+module.exports  = router
