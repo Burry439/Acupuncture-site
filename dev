@@ -1,0 +1,4 @@
+require('dotenv/config')
+require('./app')
+require('./routes/email.js')
+require('./routes/email.js')

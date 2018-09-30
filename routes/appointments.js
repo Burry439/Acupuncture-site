@@ -14,7 +14,7 @@ const sendConfirmationEmail = (appointment)=>{
          secure: false, 
         auth: {
             user: 'burry439@gmail.com', 
-            pass: process.env.SENDGRID_PASSWORD 
+            pass: process.env.SENDGRID_PASSWORD || process.env.PASSWORD
         },
     });
   
