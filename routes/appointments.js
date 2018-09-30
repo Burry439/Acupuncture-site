@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const Appointment = require('../models/appointment')
 const nodemailer = require('nodemailer');
-const sendGridInfo = require('../sendgridinfo')
+
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendConfirmationEmail = (appointment)=>{
 
@@ -11,8 +13,8 @@ const sendConfirmationEmail = (appointment)=>{
         
          secure: false, 
         auth: {
-            user: sendGridInfo.user, 
-            pass: sendGridInfo.password
+            user: 'burry439@gmail.com', 
+            pass: process.env.SENDGRID_PASSWORD 
         },
     });
   
