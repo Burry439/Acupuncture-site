@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Appointment = require('../models/appointment')
 const nodemailer = require('nodemailer');
-
+const sendGridInfo = require('../sendgridinfo')
 
 const sendConfirmationEmail = (appointment)=>{
 
@@ -11,8 +11,8 @@ const sendConfirmationEmail = (appointment)=>{
         
          secure: false, 
         auth: {
-            user: 'burry439@gmail.com', 
-            pass: 'super439@gmail.com' 
+            user: sendGridInfo.user, 
+            pass: sendGridInfo.password
         },
     });
   

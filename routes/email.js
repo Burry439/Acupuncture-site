@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const express = require('express')
 const router = express.Router()
+const sendGridInfo = require('../sendgridinfo')
 
 
 const sgMail = require('@sendgrid/mail');
@@ -15,8 +16,8 @@ router.put('/', (req,res)=>{
         
          secure: false, 
         auth: {
-            user: 'burry439@gmail.com', 
-            pass: 'super439@gmail.com' 
+            user: sendGridInfo.user, 
+            pass: sendGridInfo.password 
         },
     });
   
