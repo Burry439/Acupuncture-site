@@ -5,7 +5,6 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const config = require('./config/database')
 
-console.log(process.env.PASSWORD)
 
 
 mongoose.connect(config.database)
