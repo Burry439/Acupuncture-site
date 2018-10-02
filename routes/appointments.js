@@ -26,8 +26,8 @@ const sendConfirmationEmail = (appointment)=>{
         from : appointment.name + '     ' + appointment.email, // sender address
         to: 'burry439@gmail.com', // list of receivers
         subject: 'New Appointment', // Subject line
-        text: 'Name:' +appointment.name + 'Treatment Type: ' +appointment.title + 'Phone Number: ' +appointment.phone + 'Email: ' +appointment.email + ' Time ' + appointment.start , // plain text body
-        html: ' <br> Name:' +appointment.name + '<br> Phone Number: ' +appointment.phone + '<br> Email: ' +appointment.email + '<br>' + 'Treatement Type: ' + appointment.title + '<br>' + ' Time: ' + appointment.start + '<br>'// html body
+        text: 'Name:' +appointment.name + 'Treatment Type: ' +appointment.title + 'Phone Number: ' +appointment.phone + 'Email: ' +appointment.email + ' Time ' + appointment.theDate , // plain text body
+        html: ' <br> Name:' +appointment.name + '<br> Phone Number: ' +appointment.phone + '<br> Email: ' +appointment.email + '<br>' + 'Treatement Type: ' + appointment.title + '<br>' + ' Time: ' + appointment.theDate + '<br>'// html body
     };
 
 
@@ -35,8 +35,8 @@ const sendConfirmationEmail = (appointment)=>{
         from : 'burry439@gmail.com'+ '     ' + 'Burry The Guy In Charge', // sender address
         to: appointment.email, // list of receivers
         subject: 'Appointment Details', // Subject line
-        text: 'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + appointment.start + ' Will See you soon', // plain text body
-        html: ' <br>' +  'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + appointment.start + ' Will See you soon'   + '<br>'// html body
+        text: 'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + appointment.theDate + ' Will See you soon', // plain text body
+        html: ' <br>' +  'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + appointment.theDate + ' Will See you soon'   + '<br>'// html body
     };
 
 
@@ -88,7 +88,8 @@ router.post('/newAppointement', (req,res)=>{
     const appointment = new Appointment
     ({
         title: req.body.title,
-        start: theDate,
+        start:req.body.start,
+        formattedDate :theDate,
         name : req.body.name,
         email: req.body.email,
         phone: req.body.phone
