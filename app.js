@@ -30,11 +30,13 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 const email = require('./routes/email')
 const users = require('./routes/users')
 const appointment = require('./routes/appointments')
+const treatment = require('./routes/treatments')
 
 
 app.use('/appointments', appointment)
 app.use('/email', email)
 app.use('/users', users)
+app.use('/treatments', treatment)
 
 
 const port = process.env.PORT || 8080;

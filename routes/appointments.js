@@ -11,6 +11,22 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendConfirmationEmail = (appointment)=>{
 
+
+    const date = new Date(appointment.start)
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const day =  date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+
+
+    let theDate = months[month] +' ' + day + ' ' + year + ' At: ' + hour +":" + minute
+
+
+
+
+        console.log(appointment)
+
     let transporter = nodemailer.createTransport({
         service : 'SendGrid',
         
@@ -26,8 +42,8 @@ const sendConfirmationEmail = (appointment)=>{
         from : appointment.name + '     ' + appointment.email, // sender address
         to: 'burry439@gmail.com', // list of receivers
         subject: 'New Appointment', // Subject line
-        text: 'Name:' +appointment.name + 'Treatment Type: ' +appointment.title + 'Phone Number: ' +appointment.phone + 'Email: ' +appointment.email + ' Time ' + appointment.theDate , // plain text body
-        html: ' <br> Name:' +appointment.name + '<br> Phone Number: ' +appointment.phone + '<br> Email: ' +appointment.email + '<br>' + 'Treatement Type: ' + appointment.title + '<br>' + ' Time: ' + appointment.theDate + '<br>'// html body
+        text: 'Name:' +appointment.name + 'Treatment Type: ' +appointment.title + 'Phone Number: ' +appointment.phone + 'Email: ' +appointment.email + ' Time ' + theDate , // plain text body
+        html: ' <br> Name:' +appointment.name + '<br> Phone Number: ' +appointment.phone + '<br> Email: ' +appointment.email + '<br>' + 'Treatement Type: ' + appointment.title + '<br>' + ' Time: ' + theDate + '<br>'// html body
     };
 
 
@@ -35,8 +51,8 @@ const sendConfirmationEmail = (appointment)=>{
         from : 'burry439@gmail.com'+ '     ' + 'Burry The Guy In Charge', // sender address
         to: appointment.email, // list of receivers
         subject: 'Appointment Details', // Subject line
-        text: 'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + appointment.theDate + ' Will See you soon', // plain text body
-        html: ' <br>' +  'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + appointment.theDate + ' Will See you soon'   + '<br>'// html body
+        text: 'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + theDate + ' Will See you soon', // plain text body
+        html: ' <br>' +  'Hey ' +appointment.name + ' We Got your Request For ' +appointment.title + ' On ' + theDate + ' Will See you soon'   + '<br>'// html body
     };
 
 
@@ -74,22 +90,13 @@ router.post('/newAppointement', (req,res)=>{
     console.log(req.body)
 
 
-    const date = new Date(req.body.start)
-    const year = date.getFullYear()
-    const month = date.getMonth()
-    const day =  date.getDate()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
 
-
-    theDate = months[month] +' ' + day + ' ' + year + ' At: ' + hour +":" + minute
 
 
     const appointment = new Appointment
     ({
         title: req.body.title,
         start:req.body.start,
-        formattedDate :theDate,
         name : req.body.name,
         email: req.body.email,
         phone: req.body.phone
