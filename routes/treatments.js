@@ -23,6 +23,13 @@ router.post('/newTreatment', (req,res)=>{
        
 })
 
+router.put('/editTreatment', (req,res)=>{
+   Treatment.findByIdAndUpdate(req.body.id, req.body.treatment, (err,treatment)=>{
+      res.json(req.body.treatment)
+   })
+})
+
+
 router.delete('/deleteTreatment', (req,res)=>{
     Treatment.findByIdAndRemove(req.headers.treatmentid, (err, treatment) =>{
         console.log(treatment)
